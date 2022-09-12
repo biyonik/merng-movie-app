@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const {GraphQLID, GraphQLString, GraphQLInt, GraphQLList} = require("graphql");
+const {GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLNonNull} = require("graphql");
 const DirectorModel = require("../Models/DirectorModel");
 const MovieModel = require("../Models/MovieModel");
 const {GraphQLSchema, GraphQLObjectType} = graphql;
@@ -100,7 +100,7 @@ const AddMovieMutation = () => ({
     type: MovieType,
     args: {
         title: {
-            type: GraphQLString
+            type: new GraphQLNonNull(GraphQLString)
         },
         description: {
             type: GraphQLString
@@ -127,10 +127,10 @@ const AddDirectorMutation = () => ({
     type: DirectorType,
     args: {
         name: {
-            type: GraphQLString
+            type: new GraphQLNonNull(GraphQLString)
         },
         birth: {
-            type: GraphQLInt
+            type: new GraphQLNonNull(GraphQLInt)
         }
     },
     resolve: async (parent, args) => {
