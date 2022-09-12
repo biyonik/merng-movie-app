@@ -106,10 +106,10 @@ const AddMovieMutation = () => ({
             type: GraphQLString
         },
         year: {
-            type: GraphQLInt
+            type: new GraphQLNonNull(GraphQLInt)
         },
         directorId: {
-            type: GraphQLID
+            type: new GraphQLNonNull(GraphQLID)
         }
     },
     resolve: async (parent, args) => {
